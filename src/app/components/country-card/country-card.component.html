@@ -1,0 +1,25 @@
+<div *ngIf="show" class="container my-5">
+  <div class="card shadow-lg w-75 m-auto">
+    <img [src]="country.flagUrl" class="card-img-top" [alt]="country.flagAlt" />
+    <div class="card-body">
+      <h5 class="card-title">{{ country.name }}</h5>
+      <hr />
+      <a class="card-link">Ver en maps</a>
+      <button (click)="addFavoriteCountry(country)" class="card-link btn btn-outline-success">Favorito</button>
+    </div>
+    <ul class="list-group list-group-flush text-start">
+      <li class="list-group-item">
+        <span class="fw-bold">Capital: </span>{{ country.capital }}
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Monedas: </span><span>{{ country.currencies[1] }}</span>
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Población: </span>{{ country.population }}
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Continente: </span>{{ country.continent }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<label for="countrySearch" class="form-label">Buscar país por nombre</label>
+<input
+  id="countrySearch"
+  #countryName
+  (keyup)="getCountryByName(countryName.value)"
+  class="form-control"
+  list="datalistOptions"
+  placeholder="Buscar..."
+/>
+<datalist id="datalistOptions">
+  <option
+    *ngFor="let country of currentCountries"
+    value="{{ country.name }}"
+  >
+</datalist>

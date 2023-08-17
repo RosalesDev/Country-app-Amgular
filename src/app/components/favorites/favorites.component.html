@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="my-4">
+    <h1 class="text-center">Lista de Favoritos</h1>
+  </div>
+
+  <div *ngIf="isEmpty" class="my-4">
+    <p class="text-center">No hay favoritos agregados :(</p>
+  </div>
+
+  <div *ngIf="!isEmpty" class="card p-4 shadow-lg list-group w-75 m-auto">
+    <div
+      *ngFor="let country of favoritesCountries; let i = index"
+      class="list-group-item list-group-item-action"
+      aria-current="true"
+    >
+      <div class="d-flex w-100 justify-content-between align-items-center">
+        <img [src]="country.flagUrl" [alt]="country.flagAlt" width="150">
+        <h5 class="mb-1">{{ country.name }}</h5>
+        <button class="btn btn-outline-danger" (click)="deleteFavoriteCountry(i)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
