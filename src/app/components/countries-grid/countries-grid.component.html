@@ -1,3 +1,11 @@
-<div class="card-group">
- <app-country-card></app-country-card>
+<h2 *ngIf="isLoading">Loading...</h2>
+<div *ngIf="!isLoading" class="row row-cols-1 row-cols-md-4 row-cols-lg-6 g-5 mx-5">
+    <app-country-card
+      class="col"
+      *ngFor="let country of allCountries | paginate: { itemsPerPage: 12, currentPage: page}"
+      [country]="country"
+    ></app-country-card>
+</div>
+<div class="d-flex justify-content-center mt-5">
+  <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 </div>

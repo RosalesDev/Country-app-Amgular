@@ -16,13 +16,13 @@ export class FavoritesComponent implements OnInit {
       this.favoritesCountries = countries;
     });
   }
-
+  
   ngOnInit(): void {
     this.isEmpty = this.favoritesCountries.length === 0;
   }
-
-  deleteFavoriteCountry(index: number){
-    this.favoritesService.deleteFavoriteCountry(index);
+  
+  deleteFavoriteCountry(country: Country){
+    this.favoritesService.deleteFavoriteCountry(country);
     this.isEmpty = this.favoritesCountries.length === 0;
   }
 

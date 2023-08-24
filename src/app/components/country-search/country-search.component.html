@@ -1,15 +1,40 @@
-<label for="countrySearch" class="form-label">Buscar país por nombre</label>
-<input
-  id="countrySearch"
-  #countryName
-  (keyup)="getCountryByName(countryName.value)"
-  class="form-control"
-  list="datalistOptions"
-  placeholder="Buscar..."
-/>
+<div class="container w-25">
+  <label for="countrySearch" class="form-label">Buscar país por nombre</label>
+  <input
+    id="countrySearch"
+    #countryName
+    (keyup)="getCountryByName(countryName.value)"
+    class="form-control"
+    list="datalistOptions"
+    placeholder="Buscar..."
+  />
+</div>
 <datalist id="datalistOptions">
   <option
     *ngFor="let country of currentCountries"
     value="{{ country.name }}"
   >
 </datalist>
+<div class="container-fluid mt-5">
+  <div
+    class="row justify-content-center row-cols-1 row-cols-md-4 row-cols-lg-6 g-5 m-auto"
+  >
+    <app-country-card
+      class="col"
+      [country]="country"
+      *ngFor="let country of currentCountries; let i = index"
+    ></app-country-card>
+    <iframe *ngIf="currentCountries.length === 1"
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    [src]="currentCountries[0].name | secureDom"
+    >
+  </iframe>
+  </div>
+
+
+</div>

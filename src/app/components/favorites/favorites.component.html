@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="my-4">
     <h1 class="text-center">Lista de Favoritos</h1>
   </div>
@@ -15,9 +14,30 @@
       aria-current="true"
     >
       <div class="d-flex w-100 justify-content-between align-items-center">
-        <img [src]="country.flagUrl" [alt]="country.flagAlt" width="150">
+        <img [src]="country.flagUrl" [alt]="country.flagAlt" width="150" />
         <h5 class="mb-1">{{ country.name }}</h5>
-        <button class="btn btn-outline-danger" (click)="deleteFavoriteCountry(i)">Eliminar</button>
+        <button
+          *ngIf="!country.isCustomCountry"
+          class="btn btn-outline-danger"
+          (click)="deleteFavoriteCountry(country)"
+        >
+          <i class="bi bi-trash3"></i>
+        </button>
+        <div *ngIf="country.isCustomCountry" class="row">
+          <div class="col">
+              <button class="btn btn-outline-info" [routerLink]="['country/{{country.name}}']">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+          <div class="col">
+            <button
+              class="btn btn-outline-danger"
+              (click)="deleteFavoriteCountry(country)"
+            >
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
