@@ -1,0 +1,32 @@
+.card {
+  box-shadow: 3px 5px 12px -1px grey;
+  height: 500px;
+}
+
+.card-img-top {
+  padding: 10px;
+  filter: drop-shadow(2px 4px 6px grey);
+  border-radius: 6%;
+
+}
+
+.card-title {
+  font-size: 100%;
+}
+
+.card-body {
+  flex: 0;
+}
+
+ul {
+  font-size: 80%;
+}
+
+.bi-heart {
+  cursor: pointer;
+}
+
+.bi-heart-fill {
+  cursor: pointer;
+  color: red;
+}

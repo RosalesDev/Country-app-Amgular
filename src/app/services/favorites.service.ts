@@ -13,6 +13,15 @@ export class FavoritesService {
 
   constructor() {
     this._favorites = new BehaviorSubject<Country[]>([]);
+    if(localStorage.getItem('favorites')){
+      this.favoritesList = JSON.parse(localStorage.getItem('favorites')!);
+      this.setCountries(this.favoritesList);
+    }
+  }
+
+  saveInLocalStorage(favoritesList: Country[]){
+    // let namesList: string[] = favoritesList.map(country => country.name);
+    localStorage.setItem('favorites',JSON.stringify(favoritesList));
   }
 
   setCountries(countries: Country[]){
@@ -28,12 +37,15 @@ export class FavoritesService {
 
     if(isInFavoriteList != -1) return;
 
+    country.isFavorite = true;
     this.favoritesList.push(country);
+    this.saveInLocalStorage(this.favoritesList);
     this._favorites.next(this.favoritesList);
   }
 
-  deleteFavoriteCountry(index: number){
-    this.favoritesList.splice(index, 1);
+  deleteFavoriteCountry(country: Country) {
+    this.favoritesList = this.favoritesList.filter(countryInList => countryInList.name != country.name);
+    this.saveInLocalStorage(this.favoritesList);
     this._favorites.next(this.favoritesList);
   }
 }

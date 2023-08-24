@@ -1,0 +1,158 @@
+<div class="container w-50">
+  <div class="card px-5 m-auto p-3 shadow-lg">
+    <h3 class="title text-center">Nuevo País Favorito</h3>
+    <div class="card-body">
+      <img
+        class="d-flex m-auto"
+        [src]="flagURL"
+        alt="default image"
+        width="60%"
+      />
+      <form autocomplete="off" [formGroup]="formG" (ngSubmit)="save()">
+        <hr />
+        <!-- ----------------------------- URL BANDERA ----------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputFlagUrl" class="col-form-label"
+              >Bandera (URL)</label
+            >
+          </div>
+          <div class="col-8">
+            <input
+              #inputFlagUrl
+              type="text"
+              id="inputFlagUrl"
+              class="form-control"
+              formControlName="flagUrl"
+              (change)="onChangeFlagUrl(inputFlagUrl.value)"
+            />
+          </div>
+        </div>
+        <!-- ------------------------------- NOMBRE -------------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputCountryName" class="col-form-label">Nombre</label>
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputCountryName"
+              class="form-control"
+              formControlName="countryName"
+              [class.is-invalid]="isInvalid('countryName')"
+            />
+            <small *ngIf="isInvalid('countryName')" class="text-danger">Campo requerido. Ingrese al menos 4 caracteres.</small>
+          </div>
+        </div>
+        <!-- -------------------------- NOMBRE EN INGLES --------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputEnglishName" class="col-form-label"
+              >Nombre en Ingés</label
+            >
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputEnglishName"
+              class="form-control"
+              formControlName="englishName"
+              [class.is-invalid]="isInvalid('englishName')"
+            />
+            <small *ngIf="isInvalid('englishName')" class="text-danger">Campo requerido. Ingrese al menos 4 caracteres.</small>
+          </div>
+        </div>
+        <!-- ------------------------------- CAPITAL ------------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputCapital" class="col-form-label">Capital</label>
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputCapital"
+              class="form-control"
+              formControlName="capital"
+              [class.is-invalid]="isInvalid('capital')"
+            />
+            <small *ngIf="isInvalid('capital')" class="text-danger">Campo requerido. Ingrese al menos 4 caracteres.</small>
+          </div>
+        </div>
+        <!-- ------------------------------- MONEDAS ------------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputCurrencies" class="col-form-label">Monedas</label>
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputCurrencies"
+              class="form-control"
+              formControlName="currencies"
+              [class.is-invalid]="isInvalid('currencies')"
+            />
+            <small *ngIf="isInvalid('currencies')" class="text-danger">Campo requerido.</small>
+          </div>
+        </div>
+        <!-- ------------------------------ URL MAPS ------------------------------- -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputUrlMaps" class="col-form-label"
+              >Google Maps (URL)</label
+            >
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputUrlMaps"
+              class="form-control"
+              formControlName="mapsUrl"
+              [class.is-invalid]="isInvalid('mapsUrl')"
+            />
+            <small *ngIf="isInvalid('mapsUrl')" class="text-danger">Campo requerido.</small>
+          </div>
+        </div>
+        <!-- ------------------------------ POBLACIÓN ------------------------------ -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputPopulation" class="col-form-label"
+              >Población</label
+            >
+          </div>
+          <div class="col-8">
+            <input
+              type="number"
+              id="inputPopulation"
+              class="form-control"
+              formControlName="population"
+              [class.is-invalid]="isInvalid('population')"
+            />
+            <small *ngIf="isInvalid('population')" class="text-danger">Campo requerido.</small>
+          </div>
+        </div>
+        <!-- ----------------------------- CONTINENTE ------------------------------ -->
+        <div class="row g-2 align-items-center mt-1">
+          <div class="col-4">
+            <label for="inputContinent" class="col-form-label"
+              >Continente</label
+            >
+          </div>
+          <div class="col-8">
+            <input
+              type="text"
+              id="inputContinent"
+              class="form-control"
+              formControlName="continent"
+              [class.is-invalid]="isInvalid('continent')"
+            />
+            <small *ngIf="isInvalid('continent')" class="text-danger">Campo requerido.</small>
+          </div>
+        </div>
+
+        <div class="card-footer d-grid">
+          <button type="submit" class="btn btn-lg btn-success">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
