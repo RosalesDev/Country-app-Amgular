@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/models/Country';
-import { CustomCountryService } from 'src/app/services/custom-country.service';
+import { CountriesService } from 'src/app/services/countries.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
@@ -17,8 +17,8 @@ export class NewCountryFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private favoritesService: FavoritesService,
-    private customCuntryService: CustomCountryService
+    private countriesService: CountriesService,
+    private favoritesService: FavoritesService
     ){
     this.createFrom();
     this.flagURL = this.formG.get('flagUrl')?.value;
@@ -59,13 +59,14 @@ export class NewCountryFormComponent {
       newCountry.name = this.formG.get('countryName')?.value;
       newCountry.englishName = this.formG.get('englishName')?.value;
       newCountry.capital = this.formG.get('capital')?.value;
-      newCountry.currencies = [{curr: this.formG.get('capital')?.value}];
+      newCountry.currencies = [{curr: {name:this.formG.get('currencies')?.value}}];
       newCountry.mapsUrl = this.formG.get('mapsUrl')?.value;
       newCountry.population = this.formG.get('population')?.value;
       newCountry.continent = this.formG.get('continent')?.value;
       newCountry.isCustomCountry = true;
-      this.customCuntryService.addCustomCountry(newCountry);
-      // this.favoritesService.addFavoriteCountry(newCountry);
+
+      this.countriesService.addCustomCountry(newCountry);
+      this.favoritesService.addFavoriteCountry(newCountry);
     }
   }
 
