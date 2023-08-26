@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/models/Country';
 import { CountriesService } from 'src/app/services/countries.service';
-import { CountryAPIService } from 'src/app/services/countryAPI.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
@@ -16,10 +15,10 @@ export class CountriesGridComponent implements OnInit {
   page = 1;
 
   constructor(
-    private countryAPI: CountryAPIService,
     private favoritesService: FavoritesService,
     private countriesService: CountriesService
   ) {
+
     this.favoritesService.countries.subscribe(() => {
       if (this.allCountries.length > 0) {
         this.updateFavotireNames();
@@ -28,17 +27,16 @@ export class CountriesGridComponent implements OnInit {
     });
 
     this.countriesService.countries.subscribe((countries) => {
-      this.allCountries = [];
-      console.log('Constructor grid:', countries);
-      this.allCountries = this.allCountries.concat(countries);
-      this.sortList(this.allCountries);
+      this.allCountries = countries;
+      this.setFavorites();
+      this.isLoading = false;
     });
   }
 
   ngOnInit(): void {
     this.updateFavotireNames();
+    this.setFavorites();
 
-    this.getCountries();
   }
 
   updateFavotireNames() {
@@ -50,18 +48,6 @@ export class CountriesGridComponent implements OnInit {
         (country) => country.name
       );
     }
-  }
-
-  getCountries() {
-    this.isLoading = true;
-    this.countryAPI.getAllCountries().subscribe((countries) => {
-      countries.map((country) => {
-        this.allCountries.push(Country.countryFromJson(country));
-      });
-      this.sortList(this.allCountries);
-      this.setFavorites();
-    });
-    this.isLoading = false;
   }
 
   setFavorites() {
@@ -78,15 +64,4 @@ export class CountriesGridComponent implements OnInit {
     });
   }
 
-  sortList(countries: Country[]){
-    countries.sort((a, b) => {
-      if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        return 1;
-      }
-      if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return -1;
-      }
-      return 0;
-    });
-  }
 }

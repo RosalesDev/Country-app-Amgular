@@ -1,21 +1,69 @@
 <div *ngIf="show" class="card">
-    <img
-      [src]="country.flagUrl"
-      class="card-img-top m-auto"
-      [alt]="country.flagAlt"
-    />
+  <img
+    [src]="country.flagUrl"
+    class="card-img-top m-auto"
+    [alt]="country.flagAlt"
+  />
   <div class="card-body">
     <div class="row justify-content-end">
-      <h5 class="col-10 card-title">{{ language == 'ES' ? country.name : country.englishName }}</h5>
-      <i *ngIf="!country.isFavorite" (click)="addFavoriteCountry(country)" class="col-2 bi bi-heart"></i>
-      <i *ngIf="country.isFavorite" (click)="deleteFavoriteCountry(country)" class="col-2 bi bi-heart-fill"></i>
+      <h5 class="col-10 card-title">
+        {{ language == "ES" ? country.name : country.englishName }}
+      </h5>
+      <i
+        *ngIf="!country.isFavorite"
+        (click)="addFavoriteCountry(country)"
+        class="col-2 bi bi-heart"
+      ></i>
+      <i
+        *ngIf="country.isFavorite"
+        (click)="deleteFavoriteCountry(country)"
+        class="col-2 bi bi-heart-fill"
+      ></i>
     </div>
-    <div class="btn-group btn-group-sm" role="group" aria-label="Language toggle">
-      <input (click)="changeLanguage()" type="radio" class="btn-check" name={{country.name}} id={{country.name+1}} autocomplete="off" checked>
-      <label class="btn btn-outline-warning" for={{country.name+1}}>ES</label>
-    
-      <input (click)="changeLanguage()" type="radio" class="btn-check" name={{country.name}} id={{country.name+2}} autocomplete="off">
-      <label class="btn btn-outline-warning" for={{country.name+2}}>EN</label>
+    <div class="row">
+      <div
+        class="col-auto btn-group-sm"
+        role="group"
+        aria-label="Language toggle"
+      >
+        <input
+          (click)="changeLanguage()"
+          type="radio"
+          class="btn-check"
+          name="{{ country.name }}"
+          id="{{ country.name + 1 }}"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-outline-warning" for="{{ country.name + 1 }}"
+          >ES</label
+        >
+        <input
+          (click)="changeLanguage()"
+          type="radio"
+          class="btn-check"
+          name="{{ country.name }}"
+          id="{{ country.name + 2 }}"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-warning" for="{{ country.name + 2 }}"
+          >EN</label
+        >
+        <span *ngIf="country.isCustomCountry" class="col-auto">
+          <button
+            class="ms-2 btn btn-outline-danger"
+            (click)="editCustomCountry(country)"
+          >
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button
+            class="ms-2 btn btn-outline-danger"
+            (click)="deleteCustomCountry(country)"
+          >
+            <i class="bi bi-trash3"></i>
+          </button>
+        </span>
+      </div>
     </div>
   </div>
   <ul class="list-group list-group-flush text-start">
@@ -23,7 +71,8 @@
       <span class="fw-bold">Capital: </span>{{ country.capital }}
     </li>
     <li class="list-group-item">
-      <span class="fw-bold">Monedas: </span><span>{{ country.currencies }}</span>
+      <span class="fw-bold">Monedas: </span
+      ><span>{{ country.currencies }}</span>
     </li>
     <li class="list-group-item">
       <span class="fw-bold">Población: </span>{{ country.population }}
@@ -34,7 +83,12 @@
   </ul>
   <div class="card-footer mt-auto">
     <div class="row">
-      <a [href]="country.mapsUrl" target="_blank" class="col card-link btn btn-success">Ver en maps</a>
+      <a
+        [href]="country.mapsUrl"
+        target="_blank"
+        class="col card-link btn btn-success"
+        >Ver en maps</a
+      >
     </div>
   </div>
 </div>

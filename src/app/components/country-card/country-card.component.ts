@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Country } from 'src/app/models/Country';
+import { CountriesService } from 'src/app/services/countries.service';
 import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class CountryCardComponent {
   }
   
   constructor(
-    private favariteService: FavoritesService
+    private favariteService: FavoritesService,
+    private countriesService: CountriesService
     ) {
     this.favariteService.countries.subscribe((countries) => {
       this.favoritesCountries = countries;
@@ -35,6 +37,15 @@ export class CountryCardComponent {
 
   deleteFavoriteCountry(country: Country) {
     this.favariteService.deleteFavoriteCountry(country);
+  }
+
+  deleteCustomCountry(country: Country){
+    this.countriesService.deleteCustomCountry(country);
+    this.favariteService.deleteFavoriteCountry(country);
+  }
+
+  editCustomCountry(country: Country){
+
   }
 
 }

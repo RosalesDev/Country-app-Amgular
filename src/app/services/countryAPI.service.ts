@@ -24,22 +24,22 @@ export class CountryAPIService {
 
   }
 
-  countryExistInApi(name: string){
-    let matchCountries = [];
-    let exist = false;
-    return this.getCountryByName(name)
-    .subscribe((resp: CountryAPIResponse[]) => {
-      matchCountries = resp.filter((country) =>
-      country.translations['spa'].common
-          .toLowerCase()
-          .includes(name.toLowerCase())
-      );
-      if(matchCountries.length > 0){
-        exist = true;
-      }
-      return exist;
-    });
+  // countryExistInApi(name: string){
+  //   let matchCountries = [];
+  //   let exist = false;
+  //   return this.getCountryByName(name)
+  //   .subscribe((resp: CountryAPIResponse[]) => {
+  //     matchCountries = resp.filter((country) =>
+  //     country.translations['spa'].common
+  //         .toLowerCase()
+  //         .includes(name.toLowerCase())
+  //     );
+  //     if(matchCountries.length > 0){
+  //       exist = true;
+  //     }
+  //     return exist;
+  //   });
     
-  }
+  // }
 
 }
